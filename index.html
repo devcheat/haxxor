@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>devcheat/haxxor</title>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: #333;
+}
+
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 4px 6px;
+  text-decoration: none;
+  font-family: Arial;
+    font-size: 20px;
+  margin: 1px;
+  color: #333;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: green;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+</style>
+</head>
+  <body>
+    <h1>&#128218; devcheat/haxxor</h1>
+    <div id="menu-bar">Loading...</div>
+    <script>
+      var baseUrl = window.location.href; 
+      (async () => {
+        const response = await fetch("https://api.github.com/repos/devcheat/haxxor/git/trees/main?recursive=1");
+        const data = await response.json();
+        let htmlString = '';
+
+        for (let file of data.tree) 
+        {
+          	if(file.path.toLowerCase().endsWith('.md') == true)
+          	{
+          		var actualpath= baseUrl + file.path;
+          		var fileName = (file.path).replace("/index.md","");
+          		//fileName = (fileName).replace("docs/","");
+          		
+			htmlString += `<a href="${fileName}" target="this"><figure><span style='font-size:70px;'>&#128196;</span><figcaption>${fileName}</figcaption></figure></a>`;
+          	}
+        }
+
+        htmlString += '';
+        var result= '<ul><li><div>';
+        result += htmlString;        
+        result += '</div></li></ul>';
+
+        document.getElementById('menu-bar').innerHTML = result;
+      })()
+    </script>
+	  
+  <body>
+</html>

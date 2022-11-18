@@ -1,2 +1,0 @@
-# haxxor
-Hacking
